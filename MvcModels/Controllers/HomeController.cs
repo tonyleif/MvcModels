@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using MvcModels.Models;
 using System.Collections.Generic;
+using System;
 
 namespace MvcModels.Controllers
 {
@@ -30,7 +31,7 @@ namespace MvcModels.Controllers
             return View("Index", model);
         }
 
-        public ActionResult DisplaySummary([Bind(Prefix="HomeAddress", Exclude = "Country")] AddressSummary summary)
+        public ActionResult DisplaySummary([Bind(Prefix = "HomeAddress", Exclude = "Country")] AddressSummary summary)
         {
             return View(summary);
         }
@@ -47,10 +48,51 @@ namespace MvcModels.Controllers
             return View(names);
         }
 
-        public ActionResult Address(IList<AddressSummary> addresses)
+        //public ActionResult Address(IList<AddressSummary> addresses)
+        //{
+        //    addresses = addresses ?? new List<AddressSummary>();
+        //    return View(addresses);
+        //}
+
+        //public ActionResult Address()
+        //{
+        //    IList<Address> addresses = new List<Address>();
+        //    //UpdateModel(addresses);
+        //    UpdateModel(addresses, new FormValueProvider(ControllerContext));
+        //    return View(addresses);
+        //}
+
+        public ActionResult Address()
         {
-            addresses = addresses ?? new List<AddressSummary>();
+            IList<AddressSummary> addresses = new List<AddressSummary>();
+            //UpdateModel(addresses);
+            UpdateModel(addresses, new FormValueProvider(ControllerContext));
             return View(addresses);
         }
+
+        //public ActionResult Address(FormCollection formData)
+        //{
+        //    IList<Address> addresses = new List<Address>();
+        //    //try
+        //    //{
+        //    //    UpdateModel(addresses, formData);
+        //    //}
+        //    //catch (InvalidOperationException ex)
+        //    //{
+        //    //    //Provide feedback to user
+        //    //}
+        //    if (TryUpdateModel(addresses))
+        //    {
+        //        //proceed as normal
+        //    }
+        //    else
+        //    {
+        //        //Provide feedback to user
+        //    }
+
+        //    return View(addresses);
+        //}
     }
+
+
 }

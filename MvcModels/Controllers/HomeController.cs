@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MvcModels.Models;
+using System.Collections.Generic;
 
 namespace MvcModels.Controllers
 {
@@ -34,10 +35,22 @@ namespace MvcModels.Controllers
             return View(summary);
         }
 
-        public ActionResult Names(string[] names)
+        //public ActionResult Names(string[] names)
+        //{
+        //    names = names ?? new string[0];
+        //    return View(names);
+        //}
+
+        public ActionResult Names(IList<string> names)
         {
-            names = names ?? new string[0];
+            names = names ?? new List<string>();
             return View(names);
+        }
+
+        public ActionResult Address(IList<AddressSummary> addresses)
+        {
+            addresses = addresses ?? new List<AddressSummary>();
+            return View(addresses);
         }
     }
 }
